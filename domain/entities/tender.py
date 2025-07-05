@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Tender:
+class TenderEntity:
     """Сущность тендера."""
     tender_id: int
     name: str
