@@ -1,13 +1,16 @@
+from collections import defaultdict
 from decimal import Decimal
 
-from domain.entities.offer import OfferItemEntity, OfferEntity
-from dto.api.offer import OfferItem, Offer
+from domain.entities.offer import OfferEntity, OfferItemEntity
+from dto.api.offer import Offer, OfferItem
+
 
 class OfferMapper:
     """Класс для маппинга участника."""
 
     @staticmethod
     def to_entity(offer: Offer) -> OfferEntity:
+
         return OfferEntity(
             id=offer['id'],
             offer_id=offer['offer_id'],
@@ -40,5 +43,9 @@ class OfferItemMapper:
         )
 
     @staticmethod
-    def list_dto_to_entity(offer_items: list[OfferItem]) -> list[OfferItemEntity]:
-        return [OfferItemMapper.to_entity(offer_item) for offer_item in offer_items]   
+    def list_dto_to_dict(offer_items: list[OfferItem]) -> dict[int:list[OfferItemEntity]]:
+        data = defaultdict(list)
+        for offer_item in offer_items:
+            item = OfferItemMapper.to_entity(offer_item)
+            data[item.offer_id].append(item)
+        return data   
