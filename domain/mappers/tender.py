@@ -8,12 +8,12 @@ class TenderMapper:
     @staticmethod
     def to_entity(tender: TenderItem) -> TenderEntity:
         return TenderEntity(
-            tender_id=tender['tender_id'],
+            tender_id=tender["tender_id"],
             name=tender["name"],
             amount=tender["amount"],
-            winner_id=tender.get("winnerid", None)
+            winner_id=tender.get("winnerid", None),
         )
-    
+
     @staticmethod
-    def list_dto_to_entity(self, tenders: list[TenderItem]) -> list[TenderEntity]:
-        return [self.to_entity(tender) for tender in tenders]
+    def list_dto_to_entity(tenders: list[TenderItem]) -> list[TenderEntity]:
+        return [TenderMapper.to_entity(tender) for tender in tenders]

@@ -1,0 +1,121 @@
+from dto.api.offer import Offer, OfferItem
+from dto.api.tender import TenderItem
+
+OFFERS = [
+    {
+        "id": 1,
+        "offer_id": 101,
+        "company_email": "company1@example.com",
+        "date_spec": "2025-07-07",
+        "address": "123 Main St",
+        "own_currensie": "USD",
+        "tare_cost": 150.0,
+        "authorizedface_comment": "Approved",
+        "is_rejected": 0,
+        "reason_id": None,
+        "reason_comment": None,
+        "party_id": 501,
+        "title": "BMW",
+        "vat": "10%",
+        "is_vat_included": 1,
+        "city": "New York",
+        "reason_name": None,
+        "delivery_included": "Yes",
+        "comment": "Fast delivery",
+    },
+    {
+        "id": 2,
+        "offer_id": 102,
+        "company_email": "company2@example.com",
+        "date_spec": "2025-07-06",
+        "address": "456 Market Ave",
+        "own_currensie": "EUR",
+        "tare_cost": 200.0,
+        "authorizedface_comment": None,
+        "is_rejected": 1,
+        "reason_id": 3,
+        "reason_comment": "Missing documents",
+        "party_id": 502,
+        "title": "Yandex",
+        "vat": "20%",
+        "is_vat_included": 0,
+        "city": "Berlin",
+        "reason_name": "Incomplete",
+        "delivery_included": None,
+        "comment": None,
+    },
+]
+
+OFFER_ITEMS = [
+    {
+        "id": 1,
+        "offer_id": 101,
+        "item_id": 201,
+        "vat": "10%",
+        "own_currensie": "USD",
+        "own_currensie_rate": "1.0",
+        "price": "110.00",
+        "price_no_vat": "100.00",
+        "price_no_vat_orig": "100.00",
+        "nprice_orig": "110.00",
+    },
+    {
+        "id": 2,
+        "offer_id": 101,
+        "item_id": 202,
+        "vat": "10%",
+        "own_currensie": "USD",
+        "own_currensie_rate": "1.0",
+        "price": "220.00",
+        "price_no_vat": "200.00",
+        "price_no_vat_orig": "200.00",
+        "nprice_orig": "220.00",
+    },
+    {
+        "id": 3,
+        "offer_id": 102,
+        "item_id": 201,
+        "vat": "20%",
+        "own_currensie": "EUR",
+        "own_currensie_rate": "0.9",
+        "price": "330.00",
+        "price_no_vat": "300.00",
+        "price_no_vat_orig": "300.00",
+        "nprice_orig": "330.00",
+    },
+]
+
+TENDER_ITEMS = [
+    {
+        "id": 1,
+        "tender_id": 201,
+        "number": 1,
+        "name": "Item A",
+        "description": "Description A",
+        "amount": "10",
+        "unit_name": "pcs",
+        "vat": "10%",
+        "winnerid": "101",
+        "custom_field": "Field A",
+    },
+    {
+        "id": 2,
+        "tender_id": 202,
+        "number": 1,
+        "name": "Item C",
+        "description": "Description C",
+        "amount": "20",
+        "unit_name": "pcs",
+        "vat": None,
+        "winnerid": None,
+        "custom_field": "Field C",
+    },
+]
+
+
+def get_test_data() -> list[list[Offer], list[TenderItem], list[OfferItem]]:
+    return [
+        [Offer(**offer) for offer in OFFERS],
+        [TenderItem(**tender) for tender in TENDER_ITEMS],
+        [OfferItem(**item) for item in OFFER_ITEMS],
+    ]
